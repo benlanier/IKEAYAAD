@@ -43,7 +43,6 @@ body {
                 // is there anything here? render it
                 // assumes nothing can be in the same location
                 if (!!world.cells[row][col].render) {
-                    console.log("yuh");
                     cells[row][col] = world.cells[row][col].render();
                 } else {
                     // otherwise render the ground
@@ -76,6 +75,27 @@ body {
     var gameDiv = document.getElementById("game");
 
     render(gameDiv, ikea);
+
+    // controlla?
+    document.body.addEventListener("keydown", function(e) {
+        switch (e.keyCode) {
+            case 37: // left
+                player.pos.x--;
+            break;
+            case 38: // up 
+                player.pos.y--;
+            break;
+            case 39: // right
+                player.pos.x++;
+            break;
+            case 40: // down
+                player.pos.y++;
+            break;
+            default:
+            break;
+        }
+        render(gameDiv, new World(50, 30, ".", player));
+    });
 
 })();
 </script>
